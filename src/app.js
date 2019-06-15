@@ -4,6 +4,7 @@ const app = express()
 const hbs = require('hbs')
 const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
+const port = process.env.PORT || 4201
 
 //define paths for Express config
 const directory = (path.join(__dirname,"../public"))
@@ -83,6 +84,6 @@ app.get('*',(req,res)=>{
         name:'Aditi',
     })
 })
-app.listen('4201',()=>{
-    console.log('Server started at port 4201')
+app.listen(port,()=>{
+    console.log('Server started at port '+port)
 })

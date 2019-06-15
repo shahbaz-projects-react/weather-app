@@ -10,7 +10,7 @@ const weatherForm = document.querySelectorAll('form')[0].addEventListener("submi
     console.log(address.value)
     message1.textContent='loading...'
     message2.textContent=''
-fetch('http://localhost:4201/weather?address='+address.value).then((response)=>{
+fetch('/weather?address='+address.value).then((response)=>{
     response.json().then((data)=>{
         console.log(data)
         if(data.error){
