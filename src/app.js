@@ -41,19 +41,20 @@ app.get('/help',(req,res)=>{
 })
 
 app.get('/weather',(req,res)=>{
-    if(!req.query.address){
-        return res.send({
-           error:'Please provide address'
-        })
-    }
-    geocode(req.query.address, (error, { latitude, longitude, location }={}) => {
-        if (error) {
-            return res.send({
-                error
-             })
-        }
 
-        forecast(latitude, longitude, (error, forecastData) => {
+    // if(!req.query.address){
+    //     return res.send({
+    //        error:'Please provide address'
+    //     })
+    // }
+    // geocode(req.query.address, (error, { latitude, longitude, location }={}) => {
+    //     if (error) {
+    //         return res.send({
+    //             error
+    //          })
+    //     }
+
+        forecast(req.query.latitude, req.query.longitude, (error, forecastData) => {
             if (error) {
                 return res.send({
                     error
@@ -61,7 +62,7 @@ app.get('/weather',(req,res)=>{
             }
             res.send({
                 forecast:forecastData,
-                location,
+                //location,
                 address:req.query.address
             })
             // console.log(location)
@@ -69,7 +70,7 @@ app.get('/weather',(req,res)=>{
         })
     })
     
-})
+//})
 app.get('/help/*',(req,res)=>{
     res.render('404',{
         title:'404',
